@@ -2,22 +2,77 @@
 ---
 
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <title>GamersCraft</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>GamersCraft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body style="margin:0; font-family:sans-serif; background:#0f0f0f; color:white; text-align:center;">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #0a0a0a, #111);
+      color: white;
+      text-align: center;
+    }
 
-    <header style="padding:80px;">
-      <h1 style="font-size:60px;">GamersCraft</h1>
-      <p style="font-size:20px;">Der ultimative Minecraft Server</p>
+    .hero {
+      padding: 100px 20px;
+    }
 
-      <a href="minecraft://play.deinserver.de"
-         style="display:inline-block; margin-top:30px; padding:15px 30px; background:#4CAF50; color:white; text-decoration:none; border-radius:10px;">
-        Jetzt joinen
-      </a>
-    </header>
+    h1 {
+      font-size: 60px;
+      color: #00ff88;
+      text-shadow: 0 0 20px #00ff88;
+    }
 
-  </body>
+    p {
+      font-size: 20px;
+      opacity: 0.8;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      background: #00ff88;
+      color: black;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 0 20px #00ff88;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    .box {
+      margin: 40px auto;
+      padding: 20px;
+      background: #1a1a1a;
+      width: 300px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hero">
+    <h1>GamersCraft</h1>
+    <p>Der ultimative Minecraft Server</p>
+
+    <a class="btn" href="minecraft://play.deinserver.de">
+      Jetzt beitreten
+    </a>
+
+    <div class="box">
+      <p>IP: play.deinserver.de</p>
+      <p>Status: 🔴 Offline (später dynamisch)</p>
+    </div>
+  </div>
+
+</body>
 </html>
