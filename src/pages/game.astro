@@ -1,3 +1,132 @@
+---
+---
+
 <html lang="de">
-...
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini Stumble Run</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #111;
+      color: white;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+      color: #00ff88;
+    }
+
+    #game {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      background: linear-gradient(#222, #000);
+      overflow: hidden;
+    }
+
+    #player {
+      position: absolute;
+      bottom: 20px;
+      left: 50px;
+      width: 40px;
+      height: 40px;
+      background: #00ff88;
+      border-radius: 8px;
+    }
+
+    .block {
+      position: absolute;
+      bottom: 20px;
+      width: 40px;
+      height: 40px;
+      background: red;
+    }
+
+    #btn {
+      margin-top: 10px;
+      padding: 15px 30px;
+      background: #00ff88;
+      border: none;
+      font-size: 18px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Mini Stumble Run</h1>
+
+<div id="game">
+  <div id="player"></div>
+</div>
+
+<button id="btn">Springen</button>
+
+<script>
+  const player = document.getElementById("player");
+  const game = document.getElementById("game");
+  const btn = document.getElementById("btn");
+
+  let jumping = false;
+  let y = 0;
+
+  // Jump
+  btn.onclick = () => {
+    if (jumping) return;
+    jumping = true;
+
+    let up = setInterval(() => {
+      if (y >= 120) {
+        clearInterval(up);
+
+        let down = setInterval(() => {
+          if (y <= 0) {
+            clearInterval(down);
+            jumping = false;
+          }
+          y -= 5;
+          player.style.bottom = (20 + y) + "px";
+        }, 20);
+      }
+
+      y += 5;
+      player.style.bottom = (20 + y) + "px";
+    }, 20);
+  };
+
+  // Obstacles
+  function createBlock() {
+    const block = document.createElement("div");
+    block.classList.add("block");
+    block.style.right = "-50px";
+    game.appendChild(block);
+
+    let move = setInterval(() => {
+      let right = parseInt(block.style.right);
+      block.style.right = (right + 5) + "px";
+
+      // Collision
+      if (right > window.innerWidth - 100 && right < window.innerWidth - 50 && y < 40) {
+        alert("Game Over!");
+        location.reload();
+      }
+
+      if (right > window.innerWidth) {
+        block.remove();
+        clearInterval(move);
+      }
+    }, 20);
+  }
+
+  setInterval(createBlock, 2000);
+</script>
+
+</body>
 </html>
